@@ -1,0 +1,23 @@
+---
+uptime:
+  query: |
+    SELECT
+      VERSION() AS version,
+      VARIABLE_VALUE AS uptime
+    FROM information_schema.GLOBAL_STATUS
+    WHERE VARIABLE_NAME = 'UPTIME'
+  metrics:
+  - version:
+      usage: LABEL
+      description: Server version
+  - uptime:
+      usage: GAUGE
+      description: Server uptime
+
+now:
+  query: |
+    SELECT NOW()
+  metrics:
+  - time:
+      usage: GAUGE
+      description: Server time
